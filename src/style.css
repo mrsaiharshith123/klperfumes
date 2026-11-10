@@ -3369,8 +3369,8 @@ h1 em, h2 em, h3 em {
   grid-template-columns: 260px 1fr;
   background-color: #faf6f0;
   width: 100%;
-  max-width: 100%;
-  overflow-x: hidden;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
   box-sizing: border-box;
 }
 
@@ -3584,17 +3584,33 @@ h1 em, h2 em, h3 em {
 }
 
 .admin-table-wrap {
-  overflow-x: auto;
-  -webkit-overflow-scrolling: touch;
+  overflow-x: auto !important;
+  -webkit-overflow-scrolling: touch !important;
   width: 100%;
   max-width: 100%;
-  border: 1px solid var(--color-sand-light);
+  border: 1px solid var(--color-sand);
   margin-top: 10px;
+  display: block;
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-gold) var(--color-sand-light);
+}
+
+.admin-table-wrap::-webkit-scrollbar {
+  height: 8px;
+}
+
+.admin-table-wrap::-webkit-scrollbar-track {
+  background: var(--color-sand-light);
+}
+
+.admin-table-wrap::-webkit-scrollbar-thumb {
+  background-color: var(--color-gold);
+  border-radius: 4px;
 }
 
 .admin-table {
   width: 100%;
-  min-width: 620px;
+  min-width: 700px;
   border-collapse: collapse;
   text-align: left;
 }
@@ -3653,21 +3669,24 @@ h1 em, h2 em, h3 em {
 
 .table-actions {
   display: flex;
-  gap: 8px;
+  gap: 10px;
+  align-items: center;
+  white-space: nowrap;
 }
 
 .table-actions button,
 .action-btn-icon {
-  padding: 8px;
+  padding: 8px 10px;
   background-color: var(--color-sand-light);
   color: var(--color-walnut);
-  border: none;
+  border: 1px solid var(--color-sand);
   cursor: pointer;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-width: 34px;
-  min-height: 34px;
+  min-width: 40px;
+  min-height: 40px;
+  border-radius: 2px;
   transition: all 0.2s;
 }
 
@@ -3675,6 +3694,7 @@ h1 em, h2 em, h3 em {
 .action-btn-icon:hover {
   background-color: var(--color-gold);
   color: var(--color-espresso);
+  border-color: var(--color-gold);
 }
 
 .admin-notice {
@@ -4380,9 +4400,15 @@ h1 em, h2 em, h3 em {
   }
 
   .table-actions button {
-    padding: 8px;
-    min-width: 34px;
-    min-height: 34px;
+    padding: 8px 10px;
+    min-width: 38px;
+    min-height: 38px;
+  }
+
+  .admin-table th:last-child,
+  .admin-table td:last-child {
+    padding-right: 14px;
+    text-align: right;
   }
 
   .offer-row b {
