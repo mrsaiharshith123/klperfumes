@@ -3307,6 +3307,8 @@ h1 em, h2 em, h3 em {
   display: grid;
   place-items: center;
   padding: 30px;
+  box-sizing: border-box;
+  width: 100%;
 }
 
 .admin-login {
@@ -3314,10 +3316,18 @@ h1 em, h2 em, h3 em {
   border: 1px solid var(--color-gold);
   padding: 48px;
   width: min(100%, 480px);
+  max-width: 100%;
+  box-sizing: border-box;
   display: flex;
   flex-direction: column;
   gap: 18px;
   box-shadow: 0 20px 45px rgba(0, 0, 0, 0.45);
+}
+
+.admin-login .back-link {
+  margin-top: 8px;
+  justify-content: center;
+  color: var(--color-walnut);
 }
 
 .admin-login h1 {
@@ -3345,6 +3355,8 @@ h1 em, h2 em, h3 em {
   color: var(--color-espresso);
   outline: none;
   border-radius: 0;
+  box-sizing: border-box;
+  width: 100%;
 }
 
 .admin-login input:focus, .product-form input:focus, .product-form textarea:focus, .product-form select:focus {
@@ -3356,6 +3368,10 @@ h1 em, h2 em, h3 em {
   display: grid;
   grid-template-columns: 260px 1fr;
   background-color: #faf6f0;
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+  box-sizing: border-box;
 }
 
 .admin-sidebar {
@@ -3366,6 +3382,7 @@ h1 em, h2 em, h3 em {
   flex-direction: column;
   min-height: 100vh;
   border-right: 1px solid var(--color-walnut);
+  box-sizing: border-box;
 }
 
 .admin-sidebar .brandmark {
@@ -3485,6 +3502,9 @@ h1 em, h2 em, h3 em {
   background-color: #fff;
   border: 1px solid var(--color-sand);
   padding: 28px;
+  width: 100%;
+  box-sizing: border-box;
+  min-width: 0;
 }
 
 .panel-heading {
@@ -3565,10 +3585,16 @@ h1 em, h2 em, h3 em {
 
 .admin-table-wrap {
   overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  width: 100%;
+  max-width: 100%;
+  border: 1px solid var(--color-sand-light);
+  margin-top: 10px;
 }
 
 .admin-table {
   width: 100%;
+  min-width: 620px;
   border-collapse: collapse;
   text-align: left;
 }
@@ -3630,13 +3656,23 @@ h1 em, h2 em, h3 em {
   gap: 8px;
 }
 
-.table-actions button {
-  padding: 7px;
+.table-actions button,
+.action-btn-icon {
+  padding: 8px;
   background-color: var(--color-sand-light);
   color: var(--color-walnut);
+  border: none;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 34px;
+  min-height: 34px;
+  transition: all 0.2s;
 }
 
-.table-actions button:hover {
+.table-actions button:hover,
+.action-btn-icon:hover {
   background-color: var(--color-gold);
   color: var(--color-espresso);
 }
@@ -3651,6 +3687,25 @@ h1 em, h2 em, h3 em {
   color: #27402a;
   margin-bottom: 20px;
   font-size: 12px;
+}
+
+.admin-notice button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: inherit;
+  padding: 6px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.empty-state {
+  text-align: center;
+  padding: 36px 16px;
+  color: var(--color-text-muted);
+  font-size: 13px;
 }
 
 .offer-list {
@@ -3818,31 +3873,69 @@ h1 em, h2 em, h3 em {
 
   .admin-sidebar {
     min-height: auto;
-    padding: 18px 4%;
-    flex-direction: row;
+    padding: 16px 4%;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    grid-template-rows: auto auto;
+    gap: 12px 16px;
     align-items: center;
-    justify-content: space-between;
+    border-right: none;
+    border-bottom: 1px solid var(--color-walnut);
   }
 
   .admin-sidebar .brandmark {
+    grid-column: 1 / 2;
+    grid-row: 1 / 2;
     padding: 0;
     border: none;
-  }
-
-  .admin-nav {
-    flex-direction: row;
-    margin: 0;
-    gap: 4px;
+    display: inline-flex;
+    align-items: center;
   }
 
   .signout {
+    grid-column: 2 / 3;
+    grid-row: 1 / 2;
     margin: 0;
-    border: none;
-    padding: 0;
+    border: 1px solid var(--color-walnut);
+    padding: 8px 14px;
+    align-self: center;
+    background-color: rgba(255, 255, 255, 0.04);
+    font-size: 11px;
+    letter-spacing: 0.06em;
+  }
+
+  .signout:hover {
+    background-color: var(--color-walnut);
+    color: #fff;
+  }
+
+  .admin-nav {
+    grid-column: 1 / -1;
+    grid-row: 2 / 3;
+    display: flex;
+    flex-direction: row;
+    margin: 0;
+    gap: 8px;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: 4px;
+    scrollbar-width: thin;
+  }
+
+  .admin-nav button {
+    white-space: nowrap;
+    flex-shrink: 0;
+    padding: 10px 16px;
+    font-size: 11px;
+  }
+
+  .admin-content {
+    padding: 32px 4%;
   }
 
   .stats-grid {
     grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
   }
 }
 
@@ -3940,6 +4033,106 @@ h1 em, h2 em, h3 em {
 
   .form-grid {
     grid-template-columns: 1fr;
+  }
+
+  .admin-content {
+    padding: 24px 16px;
+  }
+
+  .admin-top {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+    margin-bottom: 22px;
+  }
+
+  .admin-top h1 {
+    font-size: 26px;
+  }
+
+  .admin-panel {
+    padding: 20px 14px;
+  }
+
+  .panel-heading {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+    margin-bottom: 18px;
+  }
+
+  .panel-heading .small-button {
+    width: 100%;
+    justify-content: center;
+    min-height: 44px;
+  }
+
+  .check-row {
+    flex-direction: column;
+    gap: 12px;
+    align-items: flex-start;
+  }
+
+  .check-row label {
+    font-size: 12px;
+    cursor: pointer;
+  }
+
+  .check-row input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    accent-color: var(--color-gold);
+    cursor: pointer;
+  }
+
+  .upload-label {
+    width: 100% !important;
+    justify-content: center;
+    min-height: 44px;
+    box-sizing: border-box;
+  }
+
+  .form-actions {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+  }
+
+  .form-actions .button,
+  .form-actions .text-button {
+    width: 100%;
+    min-height: 44px;
+    justify-content: center;
+    text-align: center;
+    display: inline-flex;
+    align-items: center;
+  }
+
+  .offer-row {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 14px;
+    padding: 14px;
+  }
+
+  .offer-actions {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 10px;
+    border-top: 1px solid var(--color-sand-light);
+    padding-top: 12px;
+  }
+
+  .admin-login {
+    padding: 34px 22px;
+    width: 100%;
+  }
+
+  .admin-login h1 {
+    font-size: 34px;
   }
 
   .footer-main {
@@ -4060,5 +4253,147 @@ h1 em, h2 em, h3 em {
   .floating-whatsapp-btn {
     width: 50px;
     height: 50px;
+  }
+
+  /* Admin Mobile (<480px, 390px, 360px) */
+  .admin-shell {
+    padding: 16px 12px;
+  }
+
+  .admin-sidebar {
+    padding: 12px;
+    gap: 10px;
+  }
+
+  .admin-sidebar .brandmark .brand-monogram {
+    width: 32px;
+    height: 32px;
+    font-size: 16px;
+  }
+
+  .admin-sidebar .brandmark b {
+    font-size: 11px;
+  }
+
+  .admin-sidebar .brandmark small {
+    font-size: 7px;
+  }
+
+  .signout {
+    padding: 6px 10px;
+    font-size: 10px;
+    gap: 6px;
+  }
+
+  .admin-nav button {
+    padding: 8px 12px;
+    font-size: 11px;
+    gap: 6px;
+  }
+
+  .admin-content {
+    padding: 18px 12px;
+  }
+
+  .admin-top h1 {
+    font-size: 22px;
+  }
+
+  .admin-panel {
+    padding: 16px 10px;
+  }
+
+  .panel-heading h2 {
+    font-size: 18px;
+  }
+
+  .panel-heading p {
+    font-size: 12px;
+  }
+
+  .stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+    margin-bottom: 20px;
+  }
+
+  .stats-grid > div {
+    padding: 12px 10px;
+  }
+
+  .stats-grid span {
+    font-size: 8px;
+    letter-spacing: 0.1em;
+  }
+
+  .stats-grid b {
+    font-size: 22px;
+    margin-top: 4px;
+  }
+
+  .admin-login {
+    padding: 24px 16px;
+    gap: 14px;
+  }
+
+  .admin-login h1 {
+    font-size: 28px;
+  }
+
+  .admin-login p {
+    font-size: 12px;
+  }
+
+  .admin-login input,
+  .product-form input,
+  .product-form textarea,
+  .product-form select {
+    font-size: 14px;
+    padding: 11px 10px;
+  }
+
+  .admin-table th {
+    padding: 10px 8px;
+    font-size: 8px;
+  }
+
+  .admin-table td {
+    padding: 10px 8px;
+    font-size: 11px;
+  }
+
+  .table-product {
+    gap: 8px;
+  }
+
+  .table-product img {
+    width: 32px;
+    height: 40px;
+  }
+
+  .table-product b {
+    font-size: 12px;
+  }
+
+  .table-product small {
+    font-size: 9px;
+  }
+
+  .table-actions button {
+    padding: 8px;
+    min-width: 34px;
+    min-height: 34px;
+  }
+
+  .offer-row b {
+    font-size: 14px;
+  }
+
+  .offer-row p {
+    font-size: 12px;
+  }
+
+  .offer-row small {
+    font-size: 10px;
   }
 }

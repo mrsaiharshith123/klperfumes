@@ -695,7 +695,7 @@ export default function Admin() {
                       {o.active ? 'DEACTIVATE' : 'ACTIVATE'}
                     </button>
                     <button
-                      className="table-actions"
+                      className="action-btn-icon"
                       onClick={() => deleteOffer(o.id)}
                       aria-label="Delete offer"
                     >
